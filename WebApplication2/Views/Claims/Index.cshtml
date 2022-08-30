@@ -1,0 +1,71 @@
+@model IEnumerable<Claim>
+
+@{
+    ViewBag.Title = "Index";
+}
+@{/*
+ * Below is an example CLM segment, which consists of some Claim Information.
+ * CLM*XYZ123000456*25***01:B:1*N*C*Y*Y~
+ * The breakdown of this Claim Information segment is:
+ * Segment Identifier: CLM
+ * CLM01 Element (Represents Patient Account Number): XYZ123000456
+ * CLM02 Element (Represents Total Claim Charge Amount): 25
+ * CLM03 Element (Not Used):
+ * CLM04 Element (Not Used):
+ * CLM05 – 1 Composite Element (Represents Facility Type Code): 01
+ * CLM05 – 2 Composite Element (Represents Facility Code Qualifier): B
+ * CLM05 – 3 Composite Element (Represents Claim Frequency Code): 1
+ * CLM06 (Represents Provider/Supplier Signature Indicator): N
+ * CLM07 (Represents Assignment/Plan Participation Code): C
+ * CLM08 (Represents Benefits Assignment Certification Indicator): Y
+ * CLM09 (Represents Release of Information Indicator): Y
+ */}
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">
+                Claims
+            </h2>
+        </div>
+        <div class="col-6 text-end">
+            <a class="btn btn-primary" href="@Url.Action("FileUpload", "Claims")">
+                Upload New File
+            </a>
+        </div>
+    </div>
+    <br/>
+    
+    <table class="table table-striped table-bordered">
+        <thead>
+        <tr>
+            <th>Claim ID</th>
+            <th>Patient Account Number</th>
+            <th>Total Claim Charge Amount</th>
+            <th>Facility Type Code</th>
+            <th>Facility Code Qualifier</th>
+            <th>Claim Frequency Code</th>
+            <th>Provider/Supplier Signature Indicator</th>
+            <th>Assignment/Plan Participation Code</th>
+            <th>Benefits Assignment Certification Indicator</th>
+            <th>Release of Information Indicator</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var claim in Model)
+        {
+            <tr>
+                <td>@claim.Id</td>
+                <td>@claim.PatientAccountNumber</td>
+                <td>@claim.TotalClaimChargeAmount</td>
+                <td>@claim.FacilityTypeCode</td>
+                <td>@claim.FacilityCodeQualifier</td>
+                <td>@claim.ClaimFrequencyCode</td>
+                <td>@claim.ProviderSupplierSignatureIndicator</td>
+                <td>@claim.AssignmentPlanParticipationCode</td>
+                <td>@claim.BenefitsAssignmentCertificationIndicator</td>
+                <td>@claim.ReleaseOfInformationIndicator</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
